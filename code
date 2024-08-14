@@ -1,0 +1,127 @@
+#include <stdio.h>
+
+int main()
+{
+    float draw = 0.0, dep = 0.0, transfer = 0.0;
+    char name[24];
+    float balance = 5000;
+    int account, type;
+    int transaction = 1;
+
+    printf("\n\t\t\t\tBANKING SYSTEM\n\n");
+    printf("\t\t**************************************\n");
+    printf("\t\t*                                    *\n");
+    printf("\t\t*  WELCOME TO OUR YAQ BANKING SYSTEM  *\n");
+    printf("\t\t*                                    *\n");
+    printf("\t\t**************************************\n");
+
+    printf("Enter your name: ");
+    scanf("%23s", name); // Read a string safely
+
+    printf("Please enter your account number: ");
+    scanf("%d", &type);
+
+    while (transaction == 1)
+    {
+        int option;
+        printf("\nChoose what you want to do\n");
+        printf("1 - Balance Enquiry\n");
+        printf("2 - Deposit\n");
+        printf("3 - Withdraw\n");
+        printf("4 - Transfer\n");
+        scanf("%d", &option);
+
+        switch (option)
+        {
+        case 1:
+            printf("\n* BALANCE ENQUIRY *\n");
+            printf("Your current balance is: %.2f Rs\n", balance);
+            break;
+
+        case 2:
+            printf("\n* DEPOSIT AMOUNT *\n");
+            printf("How much money do you want to deposit? ");
+            scanf("%f", &dep);
+            if (dep > 0 && dep <= 20000)
+            {
+                printf("You have deposited %.2f Rs.\n", dep);
+                balance += dep;
+            }
+            else if (dep > 20000)
+            {
+                printf("You can't deposit that much amount in one go.\n");
+            }
+            else
+            {
+                printf("Invalid deposit amount.\n");
+            }
+            break;
+
+        case 3:
+            printf("\n* WITHDRAW AMOUNT *\n");
+            printf("How much money do you want to withdraw? ");
+            scanf("%f", &draw);
+            if (draw <= balance && draw <= 20000)
+            {
+                printf("You have withdrawn %.2f Rs.\n", draw);
+                balance -= draw;
+            }
+            else if (draw > 20000)
+            {
+                printf("You can't withdraw that much amount in one go.\n");
+            }
+            else
+            {
+                printf("Insufficient funds.\n");
+            }
+            break;
+
+        case 4:
+            printf("\n* TRANSFER AMOUNT *\n");
+            printf("Account number you want to transfer to: ");
+            scanf("%d", &account);
+            printf("How much amount? ");
+            scanf("%f", &transfer);
+            if (transfer <= balance)
+            {
+                printf("You have successfully transferred %.2f Rs.\n", transfer);
+                balance -= transfer;
+            }
+            else
+            {
+                printf("Insufficient balance.\n");
+            }
+            break;
+
+        default:
+            printf("Invalid option.\n");
+        }
+
+        transaction = 0;
+        while (transaction != 1 && transaction != 2)
+        {
+            printf("Do you want to perform another transaction?\n");
+            printf("1. Yes  2. No\n");
+            scanf("%d", &transaction);
+            if (transaction != 1 && transaction != 2)
+            {
+                printf("Invalid choice. Please select 1 or 2.\n");
+            }
+        }
+    }
+
+    printf("\n-----------------------\n");
+    printf("       YAQ BANK LIMITED\n");
+    printf("-----------------------\n");
+    printf("Date: 3/5/16\tTime: 10:20 AM\n");
+    printf("Your name: %s\n", name);
+    printf("Your account number: %d\n", type);
+    printf("Deposited amount: %.2f Rs\n", dep);
+    printf("Withdrawn amount: %.2f Rs\n", draw);
+    printf("Transferred amount: %.2f Rs\n", transfer);
+    printf("\nThank you!\n");
+    printf("Welcome to YAQ Banking System\n");
+    printf("www.YAQBANKINGSYSTEM.com\n");
+
+    return 0;
+}
